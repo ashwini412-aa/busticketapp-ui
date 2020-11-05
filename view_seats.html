@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seats</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!------ Include the above in your HEAD tag ---------->
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
+    <script src="modules/bookingservice.js"></script>
+</head>
+
+<body>
+    <header id="header">
+        <!-- Load Header content-->
+    </header>
+    <form onsubmit="book()" >
+        <div class="card text-center border-dark mb-3" style="margin-top: 20px;">
+
+            <div class="card-body" id="seat">
+                <h5 class="card-title">Seats</h5>
+                <p class="">
+
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="21" name="seat" > 21
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="22" name="seat"> 22
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="23" name="seat"> 23
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="24" name="seat"> 24
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="25" name="seat"> 25
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="26" name="seat"> 26
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="27" name="seat"> 27
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="28" name="seat"> 28
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="29" name="seat"> 29
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="30" name="seat"> 30
+
+                    </label></p>
+
+                <p class="">
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="11" name="seat"> 11
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="12" name="seat"> 12
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="13" name="seat"> 13
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="14" name="seat"> 14
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="15" name="seat"> 15
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="16" name="seat"> 16
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="17" name="seat"> 17
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="18" name="seat"> 18
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="19" name="seat"> 19
+
+                    </label>
+                    <label class="btn btn-outline-primary ">
+                        <input type="checkbox" autocomplete="off" value="20" name="seat"> 20
+
+                    </label></p>
+                
+                <button type="submit" id="btn" class='btn btn-success'>Proceed To Pay</button>
+            </div>
+
+        </div>
+    </form>
+    
+    <script>
+
+        $("#header").load("components/_header.html");
+        var selected = [];
+       /* function payment(){
+            event.preventDefault();
+            /* var selected = document.querySelector('.abc:checked').value || []    ;
+              console.log("selected:", selected );
+              alert("Booked");
+              
+
+            const checkboxes = document.querySelectorAll('input[name="seat"]:checked');
+            
+            checkboxes.forEach((checkbox) => {
+                selected.push(checkbox.value);
+
+            });
+            
+            var seat = selected.length;
+            
+            console.log(seat);
+            console.log("Selected:", selected);
+            if(seat==0){
+                alert("Please Select Seats");
+            }
+            else{
+               alert("a")
+            
+               
+                var seatNo = { "TotalSeats" : seat , "SeatNo" : selected}
+
+                localStorage.setItem("TOTAL_SEATS", JSON.stringify(seatNo));
+                window.location.href = "payment.html";
+            }
+            
+            
+            
+
+        }*/
+
+        function book() {
+            event.preventDefault();
+            const checkboxes = document.querySelectorAll('input[name="seat"]:checked');
+            
+            checkboxes.forEach((checkbox) => {
+                selected.push(checkbox.value);
+
+            });
+            
+            var seat = selected.length;
+            
+            console.log(seat);
+            console.log("Selected:", selected);
+            if(seat==0){
+                alert("Please Select Seats");
+            }
+            else{
+            
+            
+               
+                var seatNo = { "TotalSeats" : seat , "SeatNo" : selected}
+
+                localStorage.setItem("TOTAL_SEATS", JSON.stringify(seatNo));
+                window.location.href = "payment.html";
+            }
+            
+              
+
+            /*const checkboxes = document.querySelectorAll('input[name="seat"]:checked');
+            let selected = [];
+            checkboxes.forEach((checkbox) => {
+                selected.push(checkbox.value);
+
+            });
+            var seat = selected.length;
+            console.log(seat);
+            console.log("Selected:", selected);*/
+            
+            let user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            let route = JSON.parse(localStorage.getItem("BUSES"));
+            var bookingserviceObj = new BookingService();
+            var booking_details = { "Name": user.name, "From": route.From, "To": route.To, "Date": route.Date, "Seats": selected };
+            let result = bookingserviceObj.book(booking_details);
+           /* if (result == "success") {
+                alert("booked successfully");
+                window.location.href = "show_ticket.html";
+            }
+            else {
+                alert("registration failed");
+            }
+            // localStorage.setItem("Booking_Details", JSON.stringify(booking_details));
+           // alert("booked");*/
+        }
+    </script>
+</body>
+
+</html>
