@@ -1,35 +1,27 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-danger">
     <a class="navbar-brand" href="index.html"><i class="fas fa-bus fa-2x"></i></a>
-    
+
     <div class="collapse navbar-collapse" id="collapsibleNavId">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item">
                 <a class="nav-link" href="bus_ticket.html">Bus Tickets</a>
             </li>
+
+
+
+
+
            
-           
-            
-           
-           
+          
             <li class="nav-item">
-                <a class="nav-link" href="cancel_ticket.html" >Cancel Ticket</a>
+                <a class="nav-link" href="show_ticket.html">Show My Ticket</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="reschedule.html">Reschedule</a>
+                <a class="nav-link" href="cancel_ticket.html">Cancel a ticket</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="show_my_ticket.html">Show My Ticket</a>
-            </li>
-            <li class="nav-item dropdown" >
-                <a class="nav-link dropdown-toggle" href="#" id="dropdownId" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-                <div class="dropdown-menu" aria-labelledby="dropdownId">
-                    <a class="dropdown-item" href="profile.html" >My Profile</a>
-                     <a class="dropdown-item" href="wallet.html" >Wallet</a>
-                     <a class="dropdown-item" href="coupons.html" >Coupons</a>
-                </div>
-            </li>
-            
-            
+           
+
+
         </ul>
         <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
             <li class="nav-item ">
@@ -44,34 +36,36 @@
             <li class="nav-item">
                 <a class="nav-link" href="" onclick="logout()" data-loggedin=true>(Logout) </a>
             </li>
-           
+
         </ul>
-        
+
     </div>
 </nav>
 <script>
-var user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
-console.log("LOGGED_IN_USER", user);
-if(user){
-    console.log("User is logged in");
-    // Hide menus which has data-loggedin=false
-    // Show menus which has data-loggedin=true
-    document.querySelectorAll(".nav-link[data-loggedin=false] , .nav-item[data-loggedin=false] , .dropdown-item[data-loggedin=false]").forEach(obj => obj.style.display= "none" );
-    document.querySelectorAll(".nav-link[data-loggedin=true] , .nav-item[data-loggedin=true] , .dropdown-item[data-loggedin=true]").forEach(obj => obj.style.display= "block" );
-}
-else{
-    
-    console.log("User is not logged in");
-    // Hide menus which has data-loggedin=true
-    // Show menus which has data-loggedin=false
-    document.querySelectorAll(".nav-link[data-loggedin=true] , .nav-item[data-loggedin=true] , .dropdown-item[data-loggedin=true]").forEach(obj => obj.style.display= "none" );
-    document.querySelectorAll(".nav-link[data-loggedin=false] , .nav-item[data-loggedin=false] , .dropdown-item[data-loggedin=false]").forEach(obj => obj.style.display= "block" );
+    var user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+    console.log("LOGGED_IN_USER", user);
+    if (user) {
+        console.log("User is logged in");
+        // Hide menus which has data-loggedin=false
+        // Show menus which has data-loggedin=true
+        document.querySelectorAll(".nav-link[data-loggedin=false] , .nav-item[data-loggedin=false] , .dropdown-item[data-loggedin=false]").forEach(obj => obj.style.display = "none");
+        document.querySelectorAll(".nav-link[data-loggedin=true] , .nav-item[data-loggedin=true] , .dropdown-item[data-loggedin=true]").forEach(obj => obj.style.display = "block");
+    }
+    else {
 
-}
+        console.log("User is not logged in");
+        // Hide menus which has data-loggedin=true
+        // Show menus which has data-loggedin=false
+        document.querySelectorAll(".nav-link[data-loggedin=true] , .nav-item[data-loggedin=true] , .dropdown-item[data-loggedin=true]").forEach(obj => obj.style.display = "none");
+        document.querySelectorAll(".nav-link[data-loggedin=false] , .nav-item[data-loggedin=false] , .dropdown-item[data-loggedin=false]").forEach(obj => obj.style.display = "block");
 
-function logout(){
-    localStorage.clear();
-    window.location.href = "busticket.html";
-}
+    }
+
+    function logout() {
+        localStorage.removeItem("LOGGED_IN_USER");
+        localStorage.removeItem("BUSES");
+        localStorage.removeItem("RESERVED");
+        window.location.href = "login.html";
+    }
 
 </script>
