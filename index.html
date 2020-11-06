@@ -19,6 +19,7 @@
 
     <link rel="stylesheet" href="assets/css/style.css">
     </link>
+<!-- <script src="modules/ticketservice.js"></script>-->
 </head>
 
 <body>
@@ -41,23 +42,23 @@
                         </div>
                     </div>
                     </br>
-                    <form>
+                    <form onsubmit="view_bus()">
                         <div class="form-row" style="margin-top: 50px;">
                             <div class="col-2">
 
                             </div>
 
                             <div class="col-2">
-                                <input type="text" class="form-control" placeholder="From" required>
+                                <input type="text" class="form-control" id="from" placeholder="From" required autocomplete="off">
                             </div>
                             <div class="col-2">
-                                <input type="text" class="form-control" placeholder="To" required>
+                                <input type="text" class="form-control" id="to" placeholder="To" required autocomplete="off">
                             </div>
                             <div class="col-2">
-                                <input type="text" class="form-control datepicker" placeholder="Date" required>
+                                <input type="text" class="form-control datepicker" id="date" placeholder="Date" required autocomplete="off">
                             </div>
                             <div class="col-2">
-                                <button type="submit" class="btn btn-light btn-block">Search</button>
+                                <input type="submit" class="btn btn-light btn-block" value="Search">
                             </div>
                         </div>
                     </form>
@@ -72,6 +73,27 @@
         $('.datepicker').datepicker({
             startDate: new Date()
         });
+        function view_bus() {
+            event.preventDefault();
+            var from = document.getElementById("from").value;
+            var to = document.getElementById("to").value;
+            var date = document.getElementById("date").value;
+           
+
+            var routeObj = { "From": from, "To": to, "Date": date };
+            console.log(routeObj);
+            localStorage.setItem("BUSES" , JSON.stringify(routeObj));
+            window.location.href = "view_buses.html";
+           /* var view_busserviceObj = new view_busService();
+            let result = view_busserviceObj.view_bus(routeObj);
+            if (result == "success") {
+                
+                window.location.href = "login.html";
+            }
+            else {
+                alert("Bo failed");
+            }*/
+        }
     </script>
 </body>
 
