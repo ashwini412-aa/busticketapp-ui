@@ -25,12 +25,12 @@
 <main class="container-fluid">        
   <div id="page-content">
       
-      <h1 style="text-align: center;">TICKETS</h1>
+      <h1 style="text-align: center;"> BOOKED TICKETS</h1>
       <div id="message">
 
       </div>
       <div class="table-div" id='card-table'>
-          <table class="table">
+          <table class="table" style="text-align: center;">
               <thead>
                   <tr>
                       <th> S.no </th>
@@ -52,7 +52,7 @@
   <script src="modules/bookingservice.js"></script>
 <script>
   $("#header").load("components/_header.html");
-  function displayCards() {
+  function displayTickets() {
     let reserved = new BookingService().list();
     console.log(reserved);
     let sno = 0;
@@ -67,10 +67,10 @@
     }
     else {
       document.querySelector("#card-table").style.display = "none";
-      document.querySelector("#message").innerHTML = "<div class='alert alert-danger'>No Tickets Are Reserved </div>";
+      document.querySelector("#message").innerHTML = "<div class='alert alert-danger'>No Tickets Are Booked </div>";
     }
   }
-  function deleteRecord(ccNum) {
+ /* function deleteRecord(ccNum) {
     event.preventDefault();
     console.log("Going to cancel");
     console.log(ccNum);
@@ -84,8 +84,8 @@
     window.location.reload();
     }
     
-  }
-  displayCards();
+  }*/
+  displayTickets();
   </script>
 </body>
 
