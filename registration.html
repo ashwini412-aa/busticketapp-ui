@@ -91,7 +91,8 @@
     <!--container end.//-->
     <script>
         $("#header").load("components/_header.html");
-        function register() {
+        function register()
+         {
             event.preventDefault();
             var Name = document.getElementById("name").value;
             var email = document.getElementById("email").value;
@@ -103,15 +104,27 @@
             var userObj = { "name": Name, "email": email, "password": password, "Phone_No": Phone_No };
             console.log(userObj);
             var registerserviceObj = new RegisterService();
-            let result = registerserviceObj.register(userObj);
-            if (result == "success") {
-                alert("registered successfully");
-                window.location.href = "login.html";
+            let emailAlreadyExists = registerserviceObj.isEmailExists(email);
+            if (emailAlreadyExists) {
+                alert("Email Already Exists");
             }
             else {
-                alert("registration failed");
+                let result = registerserviceObj.register(userObj);
+                if (result == "success") {
+                   alert("registered successfully");
+                    window.location.href = "login.html";
+                }
+                else {
+                    toastr.warning("registration failed");
+                }
             }
+
         }
+
+
+
+
+
     </script>
 
 
