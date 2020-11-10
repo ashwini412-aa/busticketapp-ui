@@ -26,7 +26,7 @@
   <div id="page-content">
       
       <h1 style="text-align: center;">Delete Bus</h1>
-      <div id="message">
+      <div id="message" style="text-align: center; padding-top: 30px;">
 
       </div>
       <div class="table-div" id='card-table'>
@@ -70,7 +70,7 @@
     }
     else {
       document.querySelector("#card-table").style.display = "none";
-      document.querySelector("#message").innerHTML = "<div class='alert alert-danger'>No Tickets Are  </div>";
+      document.querySelector("#message").innerHTML = "<div class='alert alert-danger'>No Buses are Added </div>";
     }
   }
   function deleteRecord(ccNum) {
