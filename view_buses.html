@@ -36,13 +36,13 @@
     </header>
     <main class="container-fluid">
         <div id="page-content">
-            
+
 
             <h1 style="text-align: center;">Buses Available</h1>
             <div id="message">
-                
+
             </div>
-            
+
             <div class="table-div" id='card-table'>
                 <table class="table">
                     <thead>
@@ -60,8 +60,8 @@
                         </tr>
 
                     </thead>
-                    <tbody style="line-height: 100px;  border-collapse: separate; border-spacing: 0 1em;" >
-                        
+                    <tbody style="line-height: 100px;  border-collapse: separate; border-spacing: 0 1em;">
+
                     </tbody>
                 </table>
                 <div id="message">
@@ -74,38 +74,53 @@
     <script src="modules/BusServices.js"></script>
     <script>
         $("#header").load("components/_header.html");
+        var sno = 0;
 
         function displayCards() {
             var route = JSON.parse(localStorage.getItem("BUSES"));
 
 
-           /* document.getElementById("bus").innerHTML = route.From + " " + "->" + " " + route.To;
-            document.getElementById("bus1").innerHTML = route.From + " " + "->" + " " + route.To;
-            document.getElementById("bus2").innerHTML = route.From + " " + "->" + " " + route.To;*/
+            /* document.getElementById("bus").innerHTML = route.From + " " + "->" + " " + route.To;
+             document.getElementById("bus1").innerHTML = route.From + " " + "->" + " " + route.To;
+             document.getElementById("bus2").innerHTML = route.From + " " + "->" + " " + route.To;*/
             console.log(route);
             var from = route.From;
             var to = route.To;
 
 
-            let buses = new BusService().list();
+            var buses = new BusService().list();
             console.log(buses);
-            let sno = 0;
+            var sno = 0;
             var route = JSON.parse(localStorage.getItem("BUSES_AVAILABLE"));
             // var dateTemp = JSON.parse(localStorage.getItem("BUSES"));
             if (buses.length > 0) {
-                for (let details of buses) {
-                    var new_row = "<tr><td>" + ++sno + "</td><td style='font-weight: bold;'>" + details.Provider + "</td><td>" + from + " " + '->' + " " + to + "</td><td>" + details.Time + "</td><td>" + details.Duration + "</td><td>" + details.Price + "</td><td><a href = 'view_seats.html'><button class= 'btn btn-info'>View Seats</button></a></td></tr>";
+                for (var details of buses) {
+                    let btn = `"view_bus('${details.Provider}','${from}','${to}', ${details.Price}, '${details.Time}')"`;
+                    console.log(btn);
+                
+                    var new_row = "<tr><td>" + ++sno + "</td><td style='font-weight: bold;'>" + details.Provider + "</td><td>" + from + " " + '->' +
+                     " " + to + "</td><td>" + details.Time + "</td><td>" + details.Duration + "</td><td>" + details.Price +
+                      "</td><td><button class= 'btn btn-info' onclick = "+ btn +">View Bus</button></td></tr>";
                     $("table tbody").append(new_row);
                 }
                 document.querySelector("#card-table").style.display = "block";
             }
             else {
-      document.querySelector("#card-table").style.display = "none";
-      document.querySelector("#message").innerHTML = "<div class='alert alert-danger'>No Buses Available </div>";
-    }
-           
+                document.querySelector("#card-table").style.display = "none";
+                document.querySelector("#message").innerHTML = "<div class='alert alert-danger'>No Buses Available </div>";
+            }
+
         }
-        
+        function view_bus(provider,from,to,price,time){
+            event.preventDefault();
+            console.log(provider, from,to,price,time);
+          //  alert("clicked");
+            var bus_details = {"Provider" : provider, "From": from, "To" : to, "Price" : price , "Departure" : time};
+            console.log(bus_details);
+            localStorage.setItem("BUS_DETAILS" , JSON.stringify(bus_details));
+            window.location.href = "bus_details.html";
+        }
+
 
 
         displayCards();
