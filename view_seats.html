@@ -194,9 +194,17 @@
             
             let user = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
             let route = JSON.parse(localStorage.getItem("BUSES"));
+            
             var bookingserviceObj = new BookingService();
-            var booking_details = { "Name": user.name, "From": route.From, "To": route.To, "Date": route.Date, "Seats": selected };
+            var buses = localStorage.getItem("BUSES_AVAILABLE");
+            console.log(buses);
+            var bus_details = JSON.parse(localStorage.getItem("BUS_DETAILS"));
+            let id = Math.floor(100 + Math.random() * 900); 
+            let bookingDate = new Date().toJSON();
+            var booking_details = { "id" : id ,"Name": user.name, "From": route.From, "To": route.To, "Provider": bus_details.Provider , "Departure": bus_details.Departure, "journeyDate": route.Date, "Seats": selected ,
+             "Status" : "Reserved",createdDate: bookingDate};
             let result = bookingserviceObj.book(booking_details);
+            
            /* if (result == "success") {
                 alert("booked successfully");
                 window.location.href = "show_ticket.html";
