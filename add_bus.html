@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Banking App</title>
+    <title>Add Bus</title>
     <!-- CSS -->
     <link href="assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
     <link
@@ -36,20 +36,20 @@
           <form onsubmit="addbus()">
             <div class="form-group card-text">
               
-              <input type="Text" class="form-control" id="provider"  placeholder="Bus Provider eg (VOLVO,JUJHAR)" autocomplete="off">
+              <input type="Text" class="form-control" id="provider"  placeholder="Bus Provider eg (VOLVO,JUJHAR)" autocomplete="off" required>
              
             </div>
             <div class="form-group">
               
-                <input type="time" class="form-control" id="time" placeholder="Time" >
+                <input type="time" class="form-control" id="time" placeholder="Time"  required>
               </div>
               <div class="form-group">
               
-                <input type="text" class="form-control" id="duration" placeholder="Duration (Hours)" autocomplete="off" > 
+                <input type="text" class="form-control" id="duration" placeholder="Duration (Hours)" autocomplete="off"  required> 
               </div>
             <div class="form-group">
               
-              <input type="text" class="form-control" id="price" placeholder="Price" autocomplete="off">
+              <input type="text" class="form-control" id="price" placeholder="Price" autocomplete="off" required>
             </div>
             
             <button type="submit" class="btn btn-primary">ADD</button>
