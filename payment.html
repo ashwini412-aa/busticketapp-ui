@@ -148,8 +148,11 @@
 
     <script>
         var num = JSON.parse(localStorage.getItem("TOTAL_SEATS"));
+        var price = JSON.parse(localStorage.getItem("BUS_DETAILS"));
+        var total = price.Price;
+        console.log(total);
         var amount = num.TotalSeats;
-        amount = amount * 799;
+        amount = amount * total;
         document.getElementById("amount").innerHTML = amount;
 
 
