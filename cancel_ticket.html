@@ -34,6 +34,7 @@
               <th>S.no</th>
               <th>Booking ID</th>
               <th>Name</th>
+              <th>Provider</th>
               <th>From <i class="fa fa-long-arrow-right"></i> To</th>
 
               <th>Seat No</th>
@@ -64,7 +65,7 @@
           if (details.Status!="Cancelled"){
               btn = "<button class= 'btn btn-danger' onclick='deleteRecord("+id+")'>Cancel</button>";
           }
-          var new_row = "<tr><td>" + ++sno + "</td><td>" + details.id + "</td><td>" + details.Name + "</td><td>" + details.From +
+          var new_row = "<tr><td>" + ++sno + "</td><td>" + details.id + "</td><td>" + details.Name + "</td><td>" + details.Provider + "</td><td>" + details.From +
            " " + "<i class='fa fa-long-arrow-right'</i>" + " " + details.To + "</td><td>" + details.Seats + "</td><td>" + details.journeyDate +
             "</td><td>" + details.createdDate+ "</td><td>" + details.Status + "</td><td>"+       btn+ "</td></tr>";
           $("table tbody").append(new_row);
