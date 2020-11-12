@@ -73,4 +73,6 @@ Reserved boolean not null default 1
 );
 
 //inserting into booked ticked table
+
+
 insert into booked_ticket(name,source,destination,Duration_hours,price,journey_date) values ('siva','chandigarh','delhi','8','899','20/11/19');
