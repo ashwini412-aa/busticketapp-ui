@@ -33,12 +33,17 @@
           <table class="table" style="text-align: center;">
               <thead>
                   <tr>
-                      <th> S.no </th>
-                      <th> Name </th>
-                      <th> From <i class="fa fa-long-arrow-right" ></i> To</th>
-                      
-                      <th>Seat No</th>
-                      <th>Journey Date</th>
+                    <th>S.no</th>
+                    <th>Booking ID</th>
+                    <th>Name</th>
+                    <th>Provider</th>
+                    <th>From <i class="fa fa-long-arrow-right"></i> To</th>
+      
+                    <th>Seat No</th>
+                    <th>Journey Date</th>
+                    <th>Booking Date</th>
+                    <th>Status</th>
+                    
                       
                   </tr>
               </thead>
@@ -60,7 +65,9 @@
     var dateTemp = JSON.parse(localStorage.getItem("BUSES"));
     if (reserved.length > 0) {
       for (let details of reserved) {
-        var new_row = "<tr><td>" + ++sno + "</td><td>" + details.Name + "</td><td>" + details.From + " " +  "<i class='fa fa-long-arrow-right'</i>" + " " + details.To + "</td><td>" + details.Seats + "</td><td>"  + dateTemp.Date + "</td></tr>";
+        var new_row = "<tr><td>" + ++sno + "</td><td>" + details.id + "</td><td>" + details.Name + "</td><td>" + details.Provider + "</td><td>" + details.From +
+           " " + "<i class='fa fa-long-arrow-right'</i>" + " " + details.To + "</td><td>" + details.Seats + "</td><td>" + details.journeyDate +
+            "</td><td>" + details.createdDate+ "</td><td>" + details.Status   + "</td></tr>";
         $("table tbody").append(new_row);
       }
       document.querySelector("#card-table").style.display = "block";
