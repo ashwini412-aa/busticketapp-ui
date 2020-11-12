@@ -24,17 +24,7 @@ insert into register (name,email,password,phoneNo) values ( 'Siva','siva@gmail.c
 
 insert into register(name,email,password,phoneNo) values ( 'Prabhu','prabhu@gmail.com', 'pass123', '7888738392');
 
-// Login Table
-create table login(
-id int primary key auto_increment,
-email varchar(50) not null,
-password varchar(50) not null
 
-);
-
-//inserting into login table
-
-insert into login (email,password) values ('siva@gmail.com','pass123');
 
 // create route table
 
