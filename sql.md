@@ -55,3 +55,22 @@ price int(4) not null
 // inserting values into bus_details table
 
 insert into bus_details(provider,source,destination,Duration_hours,price) values ('volvo','Chandigarh','Delhi','8','899');
+
+
+// create booked ticket table
+
+create table booked_ticket(
+id int primary key auto_increment,
+name varchar(50) not null,
+source varchar(20) not null,
+destination varchar(20) not null,
+Duration_hours int(2) not null,
+price int(4) not null,
+booked_date timestamp not null default current_timestamp,
+journey_date timestamp not null,
+modified_date timestamp not null default current_timestamp on update current_timestamp,
+Reserved boolean not null default 1
+);
+
+//inserting into booked ticked table
+insert into booked_ticket(name,source,destination,Duration_hours,price,journey_date) values ('siva','chandigarh','delhi','8','899','20/11/19');
