@@ -40,5 +40,18 @@ date timestamp not null default current_timestamp
 
 insert into route(source,destination) values ('Chandigarh' , 'Delhi');
 
+// create bus details table
 
+create table bus_details(
+id int primary key auto_increment,
+provider varchar(20) not null,
+source varchar(20) not null,
+destination varchar(20) not null,
+Duration_hours int(2) not null,
+price int(4) not null
 
+);
+
+// inserting values into bus_details table
+
+insert into bus_details(provider,source,destination,Duration_hours,price) values ('volvo','Chandigarh','Delhi','8','899');
