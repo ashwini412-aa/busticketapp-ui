@@ -51,6 +51,16 @@
               
               <input type="text" class="form-control" id="price" placeholder="Price" autocomplete="off" required>
             </div>
+            <div class="form-group">
+              <select class="form-control" id="category">
+                <option value=""> Select Category</option>
+                <option value="AC">AC</option>
+                <option value="NON-AC">NON-AC</option>
+                <option value="sleeper">Sleeper</option>
+                <option value="semi-sleeper">Semi-Sleeper</option>
+              </select>
+              
+            </div>
             
             <button type="submit" class="btn btn-primary">ADD</button>
           </form>
@@ -74,14 +84,15 @@
            var time = document.getElementById("time").value;
            var duration = document.getElementById("duration").value;
            var price = document.getElementById("price").value;
-           let bus_details = {Provider : provider , Time : time , Duration : duration , Price : price};
+           var category = document.getElementById("category").value;
+           let bus_details = {Provider : provider , Time : time , Duration : duration , Price : price, Category : category};
            console.log(bus_details);
           
             new BusService().savebus(bus_details);
             document.querySelector('#message').innerHTML = "Bus Added SuccesFully";
            
 
-           
+            
            
 
     
