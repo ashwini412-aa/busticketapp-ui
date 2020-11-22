@@ -35,6 +35,7 @@
                 <tr>
                   <th> S.no </th>
                   <th> Provider </th>
+                  <th> Category </th>
 
                   
 
@@ -63,7 +64,7 @@
    // var dateTemp = JSON.parse(localStorage.getItem("BUSES"));
     if (buses.length > 0) {
       for (let details of buses) {
-        var new_row = "<tr><td>" + ++sno + "</td><td>" + details.Provider + "</td><td>" + details.Time +  "</td><td>" + details.Duration + "</td><td>" + details.Price+  "</td><td><button class= 'btn btn-danger' onclick='deleteRecord(" + details.Price + ")'>Delete The Bus</button></td></tr>";
+        var new_row = "<tr><td>" + ++sno + "</td><td>" + details.Provider + "</td><td>" + details.Category + "</td><td>" + details.Time +  "</td><td>" + details.Duration + "</td><td>" + details.Price+  "</td><td><button class= 'btn btn-danger' onclick='deleteRecord(" + details.Price + ")'>Delete The Bus</button></td></tr>";
         $("table tbody").append(new_row);
       }
       document.querySelector("#card-table").style.display = "block";
