@@ -35,15 +35,30 @@
         <!-- Load Header content-->
     </header>
     <main class="container-fluid">
-        <div id="page-content">
+        <div id="page-content" id="result">
 
 
             <h1 style="text-align: center;">Buses Available</h1>
+            <div class="container">
+                <div class="row">
+                    <select class="form-control" id="busType" onchange="filterByCategory(this.value)">
+                        <option value="">Select Category </option>
+                        <option value="ALL"> All</option>
+                        <option value="AC">AC</option>
+                        <option value="NON-AC">NON-AC</option>
+                        <option value="sleeper">Sleeper</option>
+                        <option value="semi-sleeper">Semi-Sleeper</option>
+                    </select>
+                </div>
+            </div>
             <div id="message">
 
             </div>
 
             <div class="table-div" id='card-table'>
+                <div class="form-group">
+
+                </div>
                 <table class="table">
                     <thead>
                         <tr>
@@ -51,9 +66,11 @@
                             <th> Provider </th>
 
                             <th> From <i class="fa fa-long-arrow-right"></i> To</th>
+                            <th>Bus_Type</th>
 
                             <th>Departure</th>
                             <th>Duration<mark style="color: rgb(245, 184, 17);">(Hours:Min)</mark></th>
+
                             <th>Price</th>
                             <th>Seats Available</th>
 
@@ -64,9 +81,8 @@
 
                     </tbody>
                 </table>
-                <div id="message">
 
-                </div>
+
             </div>
 
         </div>
@@ -75,6 +91,25 @@
     <script>
         $("#header").load("components/_header.html");
         var sno = 0;
+        /*  let buses_available = JSON.parse(localStorage.getItem("BUSES_AVAILABLE"));
+          console.log(buses_available);
+         let category = buses_available.Category;
+         console.log(category);
+  
+          function filterByCategory(category){
+          let filteredData = null;
+          if(category == 'ALL'){
+              filteredData = buses_available;
+          }
+          else{
+              filteredData = data.filter(obj => obj.category == category);
+          }
+          console.log(filteredData);
+          document.querySelector("#result").innerHTML = JSON.stringify(filteredData);
+      }
+      filterByCategory('ALL');*/
+
+
 
         function displayCards() {
             var route = JSON.parse(localStorage.getItem("BUSES"));
@@ -90,40 +125,65 @@
 
             var buses = new BusService().list();
             console.log(buses);
+            displayBus(buses);
+        }
+        function displayBus(buses){
+            var route = JSON.parse(localStorage.getItem("BUSES"));
+            var {From,To} = route;
+            $("table tbody").empty();
             var sno = 0;
-            var route = JSON.parse(localStorage.getItem("BUSES_AVAILABLE"));
+            // var route = JSON.parse(localStorage.getItem("BUSES_AVAILABLE"))  || [];
             // var dateTemp = JSON.parse(localStorage.getItem("BUSES"));
             if (buses.length > 0) {
                 for (var details of buses) {
-                    let btn = `"view_bus('${details.Provider}','${from}','${to}', ${details.Price}, '${details.Time}')"`;
+                    let btn = `"view_bus('${details.Provider}','${From}','${To}','${details.Category}', ${details.Price}, '${details.Time}')"`;
                     console.log(btn);
-                
-                    var new_row = "<tr><td>" + ++sno + "</td><td style='font-weight: bold;'>" + details.Provider + "</td><td>" + from + " " + '->' +
-                     " " + to + "</td><td>" + details.Time + "</td><td>" + details.Duration + "</td><td>" + details.Price +
-                      "</td><td><button class= 'btn btn-info' onclick = "+ btn +">View Bus</button></td></tr>";
+
+                    var new_row = "<tr><td>" + ++sno + "</td><td style='font-weight: bold;'>" + details.Provider + "</td><td>" + From + " " + '->' +
+                        " " + To + "</td><td>" + details.Category + "</td><td>" + details.Time + "</td><td>" + details.Duration + "</td><td>" + details.Price +
+                        "</td><td><button class= 'btn btn-info' onclick = " + btn + ">View Bus</button></td></tr>";
                     $("table tbody").append(new_row);
                 }
                 document.querySelector("#card-table").style.display = "block";
+                document.querySelector("#message").style.display = "none";
             }
             else {
                 document.querySelector("#card-table").style.display = "none";
+                document.querySelector("#message").style.display = "block";
                 document.querySelector("#message").innerHTML = "<div class='alert alert-danger'>No Buses Available </div>";
             }
 
         }
-        function view_bus(provider,from,to,price,time){
+
+        function filterByCategory(Category) {
+
+            var route = JSON.parse(localStorage.getItem("BUSES_AVAILABLE")) || [];
+
+            let filteredData = null;
+            if (Category == 'ALL') {
+                filteredData = route;
+            }
+            else {
+                filteredData = route.filter(obj => obj.Category == Category);
+            }
+            console.log(filteredData);
+            //document.querySelector("#card-table").innerHTML = JSON.stringify(filteredData);
+            displayBus(filteredData);
+        }
+        filterByCategory('ALL');
+        function view_bus(provider, from, to, category, price, time) {
             event.preventDefault();
-            console.log(provider, from,to,price,time);
-          //  alert("clicked");
-            var bus_details = {"Provider" : provider, "From": from, "To" : to, "Price" : price , "Departure" : time};
+            console.log(provider, from, to, price, time);
+            //  alert("clicked");
+            var bus_details = { "Provider": provider, "From": from, "To": to, "Category": category, "Price": price, "Departure": time };
             console.log(bus_details);
-            localStorage.setItem("BUS_DETAILS" , JSON.stringify(bus_details));
+            localStorage.setItem("BUS_DETAILS", JSON.stringify(bus_details));
             window.location.href = "bus_details.html";
         }
 
 
 
-        displayCards();
+
     </script>
 </body>
 
