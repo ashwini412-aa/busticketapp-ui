@@ -74,15 +74,15 @@
       document.querySelector("#message").innerHTML = "<div class='alert alert-danger'>No Buses are Added </div>";
     }
   }
-  function deleteRecord(ccNum) {
+  function deleteRecord(sno) {
     event.preventDefault();
     console.log("Going to Delete");
-    console.log(ccNum);
+    console.log(sno);
     var cfm = confirm("Do You Want To Delete");
-    console.log(cfm);
+    console.log(sno);
     if(cfm == true){
     let bus = new BusService().list();
-    let index = bus.findIndex(obj => obj.cc_number == ccNum);
+    let index = bus.findIndex(obj => obj.sno == sno);
     bus.splice(index, 1);
     localStorage.setItem("BUSES_AVAILABLE", JSON.stringify(bus));
   
