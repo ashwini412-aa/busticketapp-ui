@@ -37,6 +37,7 @@
                     <th>Booking ID</th>
                     <th>Name</th>
                     <th>Provider</th>
+                    <th>bus Type</th>
                     <th>From <i class="fa fa-long-arrow-right"></i> To</th>
       
                     <th>Seat No</th>
@@ -59,13 +60,13 @@
   $("#header").load("components/_header.html");
   function displayTickets() {
     let reserved = new BookingService().list();
-    console.log(reserved);
+   // console.log(reserved);
     let sno = 0;
-    var details = JSON.parse(localStorage.getItem("RESERVED"));
+   // var details = JSON.parse(localStorage.getItem("RESERVED"));
     var dateTemp = JSON.parse(localStorage.getItem("BUSES"));
     if (reserved.length > 0) {
       for (let details of reserved) {
-        var new_row = "<tr><td>" + ++sno + "</td><td>" + details.id + "</td><td>" + details.Name + "</td><td>" + details.Provider + "</td><td>" + details.From +
+        var new_row = "<tr><td>" + ++sno + "</td><td>" + details.id + "</td><td>" + details.Name + "</td><td>" + details.Provider+ "</td><td>" + details.BusType + "</td><td>" + details.From +
            " " + "<i class='fa fa-long-arrow-right'</i>" + " " + details.To + "</td><td>" + details.Seats + "</td><td>" + details.journeyDate +
             "</td><td>" + details.createdDate+ "</td><td>" + details.Status   + "</td></tr>";
         $("table tbody").append(new_row);
