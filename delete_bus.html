@@ -60,11 +60,11 @@
     let buses = new BusService().list();
     console.log(buses);
     let sno = 0;
-    var details = JSON.parse(localStorage.getItem("BUSES_AVAILABLE"));
+   var details = JSON.parse(localStorage.getItem("BUSES_AVAILABLE"));
    // var dateTemp = JSON.parse(localStorage.getItem("BUSES"));
     if (buses.length > 0) {
       for (let details of buses) {
-        var new_row = "<tr><td>" + ++sno + "</td><td>" + details.Provider + "</td><td>" + details.Category + "</td><td>" + details.Time +  "</td><td>" + details.Duration + "</td><td>" + details.Price+  "</td><td><button class= 'btn btn-danger' onclick='deleteRecord(" + details.Price + ")'>Delete The Bus</button></td></tr>";
+        var new_row = "<tr><td>" + ++sno + "</td><td>" + details.Provider + "</td><td>" + details.Category + "</td><td>" + details.Time +  "</td><td>" + details.Duration + "</td><td>" + details.Price+  "</td><td><button class= 'btn btn-danger' onclick='deleteRecord(" + details.sno + ")'>Delete The Bus</button></td></tr>";
         $("table tbody").append(new_row);
       }
       document.querySelector("#card-table").style.display = "block";
@@ -74,15 +74,15 @@
       document.querySelector("#message").innerHTML = "<div class='alert alert-danger'>No Buses are Added </div>";
     }
   }
-  function deleteRecord(sno) {
+  function deleteRecord(ccNum) {
     event.preventDefault();
     console.log("Going to Delete");
-    console.log(sno);
+    console.log(ccNum);
     var cfm = confirm("Do You Want To Delete");
-    console.log(sno);
+    console.log(cfm);
     if(cfm == true){
     let bus = new BusService().list();
-    let index = bus.findIndex(obj => obj.sno == sno);
+    let index = bus.findIndex(obj => obj.cc_number == ccNum);
     bus.splice(index, 1);
     localStorage.setItem("BUSES_AVAILABLE", JSON.stringify(bus));
   
