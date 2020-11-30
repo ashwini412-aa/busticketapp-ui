@@ -89,9 +89,10 @@
            console.log(bus_details);
           
             new BusService().savebus(bus_details);
+            window.location.reload();
             document.querySelector('#message').innerHTML = "Bus Added SuccesFully";
            
-
+        
             
            
 
